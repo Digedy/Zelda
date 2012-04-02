@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/lwjgl-2.8.2/jar/lwjgl.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/lwjgl.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/Slick/slick.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/slick.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
