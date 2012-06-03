@@ -1,4 +1,5 @@
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,7 +10,7 @@ import org.newdawn.slick.Image;
  */
 public class Player extends Entity {
 
-    public Player(float x, float y, Image sprite) {
+    public Player(float x, float y, Image sprite) throws SlickException {
         super(x, y, sprite);
     }
 

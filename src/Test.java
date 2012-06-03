@@ -1,7 +1,5 @@
 import org.newdawn.slick.*;
 
-import java.util.ArrayList;
-
 /**
  * Created by IntelliJ IDEA.
  * PACKAGE_NAME
@@ -13,10 +11,6 @@ public class Test extends BasicGame {
     private Player player;
     private Enemy enemy;
     private Image bg;
-    private ArrayList<Image> walk = new ArrayList<Image>();
-    private Image sheet;
-    private float tempx;
-    private float tempy;
 
     public Test(String title) {
         super(title);
@@ -24,58 +18,42 @@ public class Test extends BasicGame {
 
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new Test("Zelda"));
+        app.setTargetFrameRate(60);
         app.setDisplayMode(800, 600, false);
         app.start();
     }
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-        player = new Player(0, 0, new Image("./img/Minish.png").getScaledCopy(1.5f));
+        player = new Player(0, 0, new Image("./img/spritesheet.png").getSubImage(20,0,15,20).getScaledCopy(2f));
         enemy = new Enemy(100, 100, new Image("./img/enemy.png").getScaledCopy(1.5f));
         bg = new Image("./img/background.png");
-        sheet = new Image("./img/walkcycle.png");
-        int x = 0;
-        for (int i = 0; i < 10; i++) {
-            walk.add(i, sheet.getSubImage(x, 0, 18, 24));
-            x += 32;
-        }
         bg = bg.getScaledCopy(gameContainer.getWidth(), gameContainer.getHeight());
     }
 
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
+
         if (gameContainer.getInput().isKeyDown(Input.KEY_RIGHT) == true) {
-            if (player.collision(enemy, 0.5f, 0) == false) {
-                player.move(0.5f, 0);
+            if (player.collision(enemy, 5f, 0) == false) {
+                player.move("right");
             }
 
         }
         if (gameContainer.getInput().isKeyDown(Input.KEY_LEFT) == true) {
-            if (player.collision(enemy, -0.5f, 0) == false) {
-                player.move(-0.5f, 0);
+            if (player.collision(enemy, -5f, 0) == false) {
+                player.move("left");
             }
         }
         if (gameContainer.getInput().isKeyDown(Input.KEY_DOWN) == true) {
-            if (player.collision(enemy, 0, 0.5f) == false) {
-                player.move(0, 0.5f);
+            if (player.collision(enemy, 0, 5f) == false) {
+                player.move("down");
             }
         }
         if (gameContainer.getInput().isKeyDown(Input.KEY_UP) == true) {
-            if (player.collision(enemy, 0, -0.5f) == false) {
-                player.move(0, -0.5f);
+            if (player.collision(enemy, 0, -5f) == false) {
+                player.move("up");
             }
-        }
-        if (player.getX() > gameContainer.getWidth()) {
-            player.move(-player.getX(), 0);
-        }
-        if (player.getX() < 0) {
-            player.move(gameContainer.getWidth(), 0);
-        }
-        if (player.getY() > gameContainer.getHeight()) {
-            player.move(0, -player.getY());
-        }
-        if (player.getY() < 0) {
-            player.move(0, gameContainer.getHeight());
         }
 
     }
@@ -83,7 +61,6 @@ public class Test extends BasicGame {
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
         bg.draw();
         player.draw();
-        enemy.draw();
     }
 
 
